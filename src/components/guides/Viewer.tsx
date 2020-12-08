@@ -4,8 +4,11 @@ import { RouteComponentProps } from "react-router-dom";
 import ReactMarkdown from "react-markdown/with-html"
 import Sidebar from "./Sidebar";
 import NotFound from "../NotFound";
-import Topics from "./Topics";
 import Loading from "../Loading";
+import { Prism } from "react-syntax-highlighter";
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
+
+import "../../sass/App.sass"
 
 const htmlParser = require('react-markdown/plugins/html-parser');
 const parseHtml = htmlParser({
@@ -16,10 +19,13 @@ const renderers: Record<string, ElementType> = {
     heading: (props: any) => {
         const name = props.node.children[0].value.toLowerCase()
             .replace(/(\s+)/g, "-");
-        return React.createElement(`h${props.level}`, {},
+        return React.createElement(`h${props.level}`, { id: "anchor" },
             <a href={`#${name}`} id={name}>#</a>,
             props.children
         );
+    },
+    code: ({ language, value }) => {
+        return <Prism style={tomorrow} language={language} children={value}/>
     }
 };
 
