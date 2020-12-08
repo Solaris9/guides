@@ -7,7 +7,7 @@ export default class Tags extends Component<RouteComponentProps & { source: Sour
     State> {
     public state = {
         items: [] as Guide[],
-        tags: [ "All tags" ],
+        tags: [ "All Tags" ],
         loading: true,
         error: null,
     }

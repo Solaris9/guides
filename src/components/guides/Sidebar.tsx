@@ -55,7 +55,9 @@ export default class Sidebar extends Component<Props, { items: SidebarItem[], si
                             </div>
                         </div>
                     );
-                    return <a href={`/topics/${this.props.params.topic}/${item.href}`}>{item.name}</a>
+                    return <a
+                        href={`/topics/${this.props.params.topic}${item.href === "README" ? '' : `/${item.href}`}`}
+                    >{item.name}</a>
                 })}
             </div>
         );

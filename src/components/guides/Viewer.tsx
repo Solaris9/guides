@@ -7,21 +7,21 @@ import NotFound from "../NotFound";
 import Topics from "./Topics";
 import Loading from "../Loading";
 
-const htmlParser = require('react-markdown/plugins/html-parser')
+const htmlParser = require('react-markdown/plugins/html-parser');
 const parseHtml = htmlParser({
     isValidNode: (node: any) => node.type !== 'script'
-})
+});
 
 const renderers: Record<string, ElementType> = {
     heading: (props: any) => {
         const name = props.node.children[0].value.toLowerCase()
             .replace(/(\s+)/g, "-");
-        return React.createElement(`h${props.level}`, { id: props.id },
-            <a href={`#${name}`}>#</a>,
+        return React.createElement(`h${props.level}`, {},
+            <a href={`#${name}`} id={name}>#</a>,
             props.children
         );
     }
-}
+};
 
 export default class Viewer extends Component<Props, State> {
     constructor(props: Readonly<any>) {
