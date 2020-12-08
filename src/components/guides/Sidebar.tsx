@@ -47,7 +47,7 @@ export default class Sidebar extends Component<Props, { items: SidebarItem[], si
         return (
             <div style={{ minWidth: "300px", display: "flex", flexDirection: "column" }}>
                 {this.state.items.map(item => {
-                    if (item.href === this.props.params.name) return (
+                    if (item.href === (this.props.params.name ?? "README")) return (
                         <div>
                             <a href={`/topics/${this.props.params.topic}/${item.href}`}>{item.name}</a>
                             <div style={{ paddingLeft: "10px", display: "flex", flexDirection: "column" }}>
